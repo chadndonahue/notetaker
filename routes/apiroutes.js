@@ -1,6 +1,7 @@
-const router = require('express').Router()
-const fs = require('fs')
+const router = require('express').Router();
+const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
+const { readAndAppend } = require('../helper/Utils');
 
 
 router.get('/', (req, res) => {
@@ -39,7 +40,7 @@ if (req.body) {
         text,
         note_id: uuidv4(),
     };
-    // need to change this to fs.writeifle and read file if i want the same functionality
+    // need to change this to fs.writeifle and read file if i want the same functionality or just write the function in a util folder cx
     readAndAppend(newNote, './db/db.json');
     res.json(`Note added successfully 🚀`);
     } else {
