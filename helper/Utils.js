@@ -8,7 +8,9 @@ const readAndAppend = (content, file) => {
     } else {
         const parsedData = JSON.parse(data);
         parsedData.push(content);
-        writeToFile(file, parsedData);
+        fs.writeFile(file, JSON.stringify(parsedData), (err) =>
+        err ? console.error(err) : console.info(`\nData written to ${file}`)
+      );
     }
     });
 };

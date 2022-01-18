@@ -3,16 +3,19 @@ const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
 const { readAndAppend } = require('../helper/Utils');
 
-
-router.get('/', (req, res) => {
+// unsure if i need the notes here with the back slash
+router.get('/notes', (req, res) => {
+    console.log("This is the get route")
     // need to change this to the fs version
-    fs.readFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
+    fs.readFile('./db/db.json', 'utf8', (err,data) => {
+        console.log(data)
+        res.json(JSON.parse(data))});
 });
 
 
 // This is extra credit and optional.
 // This works through filtering through everything inside of the db, then grabs everything that isnt matching that id, copies it, and makes a new file excluding the one that was meant to be deleted(deletion through exclusion).
-router.delete('/:note_id', (req, res) => {
+router.delete('/notes/:note_id', (req, res) => {
     const noteId = req.params.note_id;
     fs.readFile('./db/db.json')
     .then((data) => JSON.parse(data))
@@ -29,8 +32,9 @@ router.delete('/:note_id', (req, res) => {
 });
 
 
-router.post('/', (req, res) => {
-    console.log(req.body);
+router.post('/notes', (req, res) => {
+    
+    console.log("you made it");
 
     const { title, text } = req.body;
 
