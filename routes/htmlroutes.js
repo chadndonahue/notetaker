@@ -16,3 +16,5 @@ router.get('*', (req, res) => {
 });
 
 module.exports = router;
+
+// front end get routes for the list items on the left

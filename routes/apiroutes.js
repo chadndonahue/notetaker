@@ -42,7 +42,7 @@ if (req.body) {
     const newNote = {
         title,
         text,
-        note_id: uuidv4(),
+        id: uuidv4(),
     };
     // need to change this to fs.writeifle and read file if i want the same functionality or just write the function in a util folder cx
     readAndAppend(newNote, './db/db.json');
